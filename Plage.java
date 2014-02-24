@@ -8,12 +8,24 @@ package Memoire;
 
 // Classe plage
 public class Plage {
+	/*** Champs ***/
+	
 	protected List_Plage head; // Tête
 	protected List_Plage tail; // Queue
+	
+	/*** Fin Champs ***/
+	
+	
+	/*** Constructeur ***/
 	
 	public Plage( ) {
 		this.head = this.tail = null;
 	}
+	
+	/*** Fin Constructeur ***/
+	
+	
+	/*** Methodes ***/
 	
 	//Ajout en tête
 	public void addHeader( int TaillePlage, byte[] Plage, int IdStartPlage, int IdEndPlage ) {
@@ -47,7 +59,7 @@ public class Plage {
 		this.tail = nouveau; // 
 	}
 	
-	// Suppression d'un plage
+	// Suppression d'une plage
 	public void delete( int IdStartPlage , int IdEndPlage ) {
 		List_Plage Current = this.head;
 		List_Plage Next = null;
@@ -63,8 +75,9 @@ public class Plage {
 			if( Next != null )
 				Next.NextPlage = Current.NextPlage;
 		}
-		
 	}
+	
+	/*** Fin Methodes ***/
 }
 
 //Classe liste de plage ( Liste chaînées d'objets )
