@@ -7,11 +7,12 @@
 package Memoire;
 
 // Classe plage
-public class Plage {
+abstract class Plage {
 	/*** Champs ***/
 	
 	protected List_Plage head; // Tête
 	protected List_Plage tail; // Queue
+	private Segment segment;
 	
 	/*** Fin Champs ***/
 	
@@ -29,7 +30,7 @@ public class Plage {
 	
 	//Ajout en tête
 	public void addHeader( int TaillePlage, byte[] Plage, int IdStartPlage, int IdEndPlage ) {
-		List_Plage nouveau = new List_Plage( TaillePlage , Plage , IdStartPlage , IdEndPlage );
+		List_Plage nouveau = new List_Plage( TaillePlage , IdStartPlage , IdEndPlage );
 		if( this.tail == null ) {
 			//this.tail = nouveau;
 			this.tail = this.head;
@@ -46,7 +47,7 @@ public class Plage {
 	public void AddFooter( int TaillePlage , byte[] Plage , int IdStartPlage , int IdEndPlage ) {
 		
 		// Création d'un nouvel élément dans la liste
-		List_Plage nouveau = new List_Plage( TaillePlage , Plage , IdStartPlage , IdEndPlage );
+		List_Plage nouveau = new List_Plage( TaillePlage , IdStartPlage , IdEndPlage );
 		
 		
 		if( this.head == null ) {
@@ -84,8 +85,6 @@ public class Plage {
 class List_Plage {
 	int TaillePlage; // Taille max de la plage
 	
-	byte[] Plage; // Contenu binaire de la plage ( A voir )
-	
 	Integer IdStartPlage; // Adresse du début de la plage allouée
 	
 	Integer IdEndPlage; // Adresse de la fin de la plage allouée
@@ -97,7 +96,6 @@ class List_Plage {
 	// Constructeur par defaut
 	List_Plage() {
 		this.TaillePlage = 0;
-		this.Plage = null;
 		this.IdStartPlage = 0;
 		this.IdEndPlage = 0;
 		this.FLAG_FREE = true;
@@ -105,9 +103,8 @@ class List_Plage {
 	}
 	
 	// Constructeur des variables non calculable
-	List_Plage( int TaillePlage , byte[] Plage , int IdStartPlage , int IdEndPlage ) {
+	List_Plage( int TaillePlage , int IdStartPlage , int IdEndPlage ) {
 		this.TaillePlage = TaillePlage;
-		this.Plage = null; // Ne pas se tromper, c'est le tableau binaire, pas la classe!!!
 		this.IdStartPlage = IdStartPlage;
 		this.IdEndPlage = IdEndPlage;
 		this.FLAG_FREE = true;

@@ -7,13 +7,11 @@
 package Memoire; // Appel du package Memoire
 
 //Classe Mémoire
-public class Memoire {
+abstract class Memoire {
 	
 	/*** Champs ***/
 	
-	private int TailleMax; // Taille max dans l'unité quotidienne ( Ko, Mo, Go, ... )
-	
-	private byte[] Memoire; // Contenu de la mémoire en binaire ( A voir )
+	private int TailleMax; // Taille max en octet
 	
 	private boolean FLAG_ENABLE; // Flag informant sur l'espace de la mémoire ( vrai = libre, faux = alloué )
 	
@@ -27,22 +25,19 @@ public class Memoire {
 	//Constructeur par defaut
 	public Memoire() {
 		this.TailleMax = 0;
-		this.Memoire = null;
 		this.FLAG_ENABLE = true;
 		this.plage = null;
 	}
 	
 	// Constructeur des variables sans l'initialisation de la classe plage
-	public Memoire( int TailleMax , byte[] Memoire , boolean FLAG_ENABLE ) {
+	public Memoire( int TailleMax /*, byte[] Memoire*/ , boolean FLAG_ENABLE ) {
 		this.TailleMax = TailleMax;
-		this.Memoire = Memoire;
 		this.FLAG_ENABLE = FLAG_ENABLE;
 	}
 	
 	// Constructeur total avec initialisation de la classe
-	public Memoire( int TailleMax , byte[] Memoire , boolean FLAG_ENABLE , Plage plage ) {
+	public Memoire( int TailleMax /*, byte[] Memoire*/ , boolean FLAG_ENABLE , Plage plage ) {
 		this.TailleMax = TailleMax;
-		this.Memoire = Memoire;
 		this.FLAG_ENABLE = FLAG_ENABLE;
 		this.plage = plage;
 	}
@@ -66,15 +61,7 @@ public class Memoire {
 	public void setTailleMax(int tailleMax) {
 		TailleMax = tailleMax;
 	}
-
-	public byte[] getMemoire() {
-		return Memoire;
-	}
-
-	public void setMemoire(byte[] memoire) {
-		Memoire = memoire;
-	}
-
+	
 	public boolean isFLAG_ENABLE() {
 		return FLAG_ENABLE;
 	}
