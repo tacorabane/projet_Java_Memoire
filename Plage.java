@@ -7,7 +7,7 @@
 package Memoire;
 
 // Classe plage
-abstract class Plage {
+abstract class Plage extends Memoire{
 	/*** Champs ***/
 	
 	protected List_Plage head; // Tête
@@ -20,7 +20,15 @@ abstract class Plage {
 	/*** Constructeur ***/
 	
 	public Plage( ) {
+		super();
 		this.head = this.tail = null;
+		this.segment = null;
+	}
+	
+	public Plage( Segment segment ) {
+		super();
+		this.head = this.tail = null;
+		this.segment = segment;
 	}
 	
 	/*** Fin Constructeur ***/
@@ -29,7 +37,7 @@ abstract class Plage {
 	/*** Methodes ***/
 	
 	//Ajout en tête
-	public void addHeader( int TaillePlage, byte[] Plage, int IdStartPlage, int IdEndPlage ) {
+	public void addHeaderPlage( int TaillePlage, int IdStartPlage, int IdEndPlage ) {
 		List_Plage nouveau = new List_Plage( TaillePlage , IdStartPlage , IdEndPlage );
 		if( this.tail == null ) {
 			//this.tail = nouveau;
@@ -44,14 +52,14 @@ abstract class Plage {
 	}
 	
 	//Ajout en fin de liste
-	public void AddFooter( int TaillePlage , byte[] Plage , int IdStartPlage , int IdEndPlage ) {
+	public void AddFooterPlage( int TaillePlage , byte[] Plage , int IdStartPlage , int IdEndPlage ) {
 		
 		// Création d'un nouvel élément dans la liste
 		List_Plage nouveau = new List_Plage( TaillePlage , IdStartPlage , IdEndPlage );
 		
 		
 		if( this.head == null ) {
-			this.head = this.tail; // Si la tête de la liste est null alors le nouvel élément de la liste se retrouve premier
+			this.head = this.tail; // Si la tête de la liste est null alors on place l'élément de fin de liste en tête de liste
 			this.head.NextPlage = nouveau;
 		}
 		else
@@ -71,25 +79,41 @@ abstract class Plage {
 		}
 		
 		if( Current != null ) {
-			if( Current == tail )
-				tail = Next;
+			if( Current == this.tail )
+				this.tail = Next;
 			if( Next != null )
 				Next.NextPlage = Current.NextPlage;
 		}
 	}
 	
 	/*** Fin Methodes ***/
+	
+	
+	/*** Getters & Setters ***/
+	
+	public Segment getSegment( ) {
+		return this.segment;
+	}
+	
+	public void setSegment( Segment segment ) {
+		this.segment = segment;
+	}
+	
+	/*** Fin Getters & Setters ***/
 }
 
 //Classe liste de plage ( Liste chaînées d'objets )
 class List_Plage {
-	int TaillePlage; // Taille max de la plage
+	
+	int TaillePlage;      // Taille max de la plage
 	
 	Integer IdStartPlage; // Adresse du début de la plage allouée
 	
-	Integer IdEndPlage; // Adresse de la fin de la plage allouée
+	Integer IdEndPlage;   // Adresse de la fin de la plage allouée
 	
-	boolean FLAG_FREE; // Flag informant sur la disponibilité de la plage ( vrai = libre, faux = allouer )
+	boolean FLAG_FREE;    // Flag informant sur la disponibilité de la plage ( vrai = libre, faux = allouer )
+	
+	byte[] Datas;         // Données binaires sour forme de tableau
 	
 	List_Plage NextPlage; // Adresse de la prochaine plage
 	
@@ -99,6 +123,7 @@ class List_Plage {
 		this.IdStartPlage = 0;
 		this.IdEndPlage = 0;
 		this.FLAG_FREE = true;
+		this.Datas = null;
 		this.NextPlage = null;
 	}
 	
@@ -107,6 +132,7 @@ class List_Plage {
 		this.TaillePlage = TaillePlage;
 		this.IdStartPlage = IdStartPlage;
 		this.IdEndPlage = IdEndPlage;
+		this.Datas = null;
 		this.FLAG_FREE = true;
 		this.NextPlage = null;
 	}

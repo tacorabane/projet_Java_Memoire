@@ -11,11 +11,13 @@ abstract class Memoire {
 	
 	/*** Champs ***/
 	
-	private int TailleMax; // Taille max en octet
+	private int TailleMax;       // Taille max en octet
 	
 	private boolean FLAG_ENABLE; // Flag informant sur l'espace de la mémoire ( vrai = libre, faux = alloué )
 	
-	private Plage plage; // Classe Plage
+	private byte[] Datas;        // Données binaires sour forme de tableau 
+	
+	private Plage plage;         // Classe Plage
 	
 	/*** Fin Champs ***/
 	
@@ -26,19 +28,22 @@ abstract class Memoire {
 	public Memoire() {
 		this.TailleMax = 0;
 		this.FLAG_ENABLE = true;
+		this.Datas = null;
 		this.plage = null;
 	}
 	
 	// Constructeur des variables sans l'initialisation de la classe plage
-	public Memoire( int TailleMax /*, byte[] Memoire*/ , boolean FLAG_ENABLE ) {
+	public Memoire( int TailleMax , byte[] Datas , boolean FLAG_ENABLE ) {
 		this.TailleMax = TailleMax;
 		this.FLAG_ENABLE = FLAG_ENABLE;
+		this.Datas = Datas;
 	}
 	
 	// Constructeur total avec initialisation de la classe
-	public Memoire( int TailleMax /*, byte[] Memoire*/ , boolean FLAG_ENABLE , Plage plage ) {
+	public Memoire( int TailleMax , byte[] Datas , boolean FLAG_ENABLE , Plage plage ) {
 		this.TailleMax = TailleMax;
 		this.FLAG_ENABLE = FLAG_ENABLE;
+		this.Datas = Datas;
 		this.plage = plage;
 	}
 	
@@ -68,6 +73,14 @@ abstract class Memoire {
 
 	public void setFLAG_ENABLE(boolean fLAG_ENABLE) {
 		FLAG_ENABLE = fLAG_ENABLE;
+	}
+	
+	public byte[] getDatas( ) {
+		return Datas;
+	}
+	
+	public void setDatas( byte[] Datas ) {
+		this.Datas = Datas;
 	}
 
 	public Plage getPlage() {
