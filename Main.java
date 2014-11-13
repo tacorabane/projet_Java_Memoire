@@ -1,13 +1,13 @@
 /***********************************************************
- *** Projet de Mme OULMI, Gestion d'une mémoire centrale ***
- **************** Réaliser par NEGRE Xavier ****************
- *** Créer le 22/02/2014, Mis à jour le 24/02/2014 12h54 ***
+ *** Projet de Mme OULMI, Gestion d'une mÃ©moire centrale ***
+ **************** RÃ©aliser par NEGRE Xavier ****************
+ *** CrÃ©er le 22/02/2014, Mis Ã  jour le 24/02/2014 12h54 ***
  ***********************************************************/
 
 package Memoire;
 
 public class Main {
 	public static void main(String[] args) {
-		
+		system.out.println("Hello World !");
 	}
 }
